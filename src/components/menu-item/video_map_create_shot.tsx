@@ -21,7 +21,7 @@ const debounce = (func: (...args: any[]) => void, delay: number) => {
   };
 };
 
-export const Videos = () => {
+export const VideoMapCreateShot = () => {
   const {setData}=useDataVideos()
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredVideos, setFilteredVideos] = useState<typeof video_mock>(video_mock);
@@ -96,7 +96,7 @@ console.log({selectedVideoItems})
   };
 
   return (
-    <div className="absolute h-full overflow-hidden flex flex-col">
+    <div className=" h-full overflow-hidden flex flex-col w-[50%]">
       <div className="text-md text-[#e4e4e7] font-medium h-11 border-b border-border flex items-center px-4 text-muted-foreground">
         Videos
       </div>

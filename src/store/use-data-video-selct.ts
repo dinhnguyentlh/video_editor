@@ -1,12 +1,13 @@
 import { create } from 'zustand';
 
 interface IVideos{
-    title:string;
-    src:string;
-    id:string
+    title: string;
+    src: string;
+    resourceId: string;
 }
 interface IData{
-    data:IVideos[]
+    data:IVideos[];
+    setData:(listData: IVideos[] ) => void;
 }
 const useDataVideos = create<IData>((set) => ({
   data:[],

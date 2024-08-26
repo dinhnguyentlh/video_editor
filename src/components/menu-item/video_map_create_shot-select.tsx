@@ -21,7 +21,7 @@ const debounce = (func: (...args: any[]) => void, delay: number) => {
   };
 };
 
-export const Videos = () => {
+export const VideoMapCreateShotSlect = () => {
   const {setData}=useDataVideos()
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredVideos, setFilteredVideos] = useState<typeof video_mock>(video_mock);
@@ -96,25 +96,11 @@ console.log({selectedVideoItems})
   };
 
   return (
-    <div className="absolute h-full overflow-hidden flex flex-col">
+    <div className=" h-full overflow-hidden flex flex-col w-[50%]">
       <div className="text-md text-[#e4e4e7] font-medium h-11 border-b border-border flex items-center px-4 text-muted-foreground">
-        Videos
+      Videos select
       </div>
-      <div className="grid grid-cols-1 items-center gap-2 m-2">
-        <input
-          type="text"
-          placeholder="search..."
-          style={{
-            border: "none",
-            outline: "none",
-            backgroundColor: "#222222",
-            padding: "4px 8px",
-          }}
-          value={searchTerm}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyPress}
-        />
-      </div>
+     
       <ScrollArea className="flex-1 overflow-y-auto">
         <div className="grid grid-cols-2 items-center gap-2 m-2">
           {filteredVideos.map((video, index) => (
@@ -126,9 +112,9 @@ console.log({selectedVideoItems})
             >
               <video src={video.src} />
               <div>
-              <input type="checkbox" name="select" id="select_video" className="absolute bottom-1.5 right-1.5"
+              {/* <input type="checkbox" name="select" id="select_video" className="absolute bottom-1.5 right-1.5"
               onChange={() => handleCheckboxChange(video.resourceId)}
-              />
+              /> */}
               </div>
             </label>
           ))}
