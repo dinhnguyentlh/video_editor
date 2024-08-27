@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import VideoEditor from "./pages/VideoEditor";
 import Dialog from "./components/Dialog";
+import SearchSelectVideo from "./pages/SearchSelectVideo";
 
 export default function App() {
 
@@ -13,6 +14,7 @@ export default function App() {
           element={<Dialog />}
         />
       </Route>
+      <Route path="search-select-video" element={<SearchSelectVideo/>}/>
     </Routes>
   );
 }
