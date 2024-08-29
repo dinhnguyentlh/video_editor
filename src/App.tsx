@@ -7,6 +7,7 @@ import VideoResultPage from "./pages/VideoResult";
 import ImportVideoPage from "./pages/ImportVideoPage";
 import ImportVideoPageV2 from "./pages/ImportVideoPageV2";
 import VideoFullPage from "./pages/VideoFullPage";
+import FFFFF from "./pages/TesstFFmpeg";
 
 export default function App() {
 
@@ -34,6 +35,7 @@ export default function App() {
       }/>
       <Route path="import-video" element={<ImportVideoPage/>}/>
       <Route path="video-full" element={<VideoFullPage/>}/>
+      <Route path="test" element={<FFFFF/>}/>
     </Routes>
   );
 }

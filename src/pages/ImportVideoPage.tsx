@@ -1,27 +1,55 @@
 import { Icons } from "@/components/shared/icons";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useState } from "react";
+// import processVideos from "@/utils/processVideos";
+import { useEffect, useState } from "react";
 
 export default function ImportVideoPage() {
     const [videos, setVideos] = useState([]);
     const [isUploaded, setIsUploaded] = useState(false);
     const [size, setSize] = useState<number>(10)
-
+    useEffect(() => {
+        document.title = "import video";
+    }, []);
 
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files);
-        const videoFiles = files.map((file: any) => URL.createObjectURL(file));
+        const videoFiles = files.map((file: any) => ({
+            file: URL.createObjectURL(file),
+            cuts: [{ start: '00:00:10', end: '00:00:20' }, { start: '00:01:00', end: '00:01:10' }]
+        }));
         setVideos((prevVideos) => [...prevVideos, ...videoFiles]);
         setIsUploaded(true);
     };
-    console.log({ size })
+    console.log({ videos })
+    // processVideos([{path:}])
     return (
         <div className="h-screen p-8 relative ">
-              <h1 className="absolute top-2 left-1/2 flex items-center justify-center  font-bold text-gray-50 mb-4 font-mono" ><Button size="sm" variant="secondary">
+            <nav className="flex" aria-label="Breadcrumb">
+                <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li className="inline-flex items-center">
+                        <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            <svg className="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div className="flex items-center">
+                            <svg className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <a href="#" className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">import video</a>
+                        </div>
+                    </li>
+
+                </ol>
+            </nav>
+            {/* <h1 className="absolute top-2 left-1/2 flex items-center justify-center  font-bold text-gray-50 mb-4 font-mono" ><Button size="sm" variant="secondary">
                         import video
-                    </Button></h1>
-            
+                    </Button></h1> */}
+
             <div className=" flex flex-col h-full ">
 
                 <div className="flex flex-1 overflow-hidden h-full">
@@ -57,8 +85,8 @@ export default function ImportVideoPage() {
                                                     <div key={index} className="  hover:bg-gray-200 cursor-pointer w-full  border border-gray-500 rounded-lg">
                                                         <div className="relative w-full rounded-lg border-blue-500  overflow-hidden" style={{ paddingTop: "56.25%" }}>
 
-                                                             <video className="absolute top-0 left-0 w-full h-full">
-                                                                <source src={video} type="video/mp4" />
+                                                            <video className="absolute top-0 left-0 w-full h-full"  >
+                                                                <source src={video.file} type="video/mp4" />
                                                             </video>
                                                         </div>
                                                     </div>
@@ -94,7 +122,7 @@ export default function ImportVideoPage() {
                                         id="file-upload"
                                     />
                                     <label htmlFor="file-upload" className="text-white px-4 py-2 rounded-lg cursor-pointer">
-                                        <Icons.CloudDownloadIcon width={200} />
+                                        <Icons.CloudDownloadIcon width={200} color="gray" />
                                     </label>
                                 </div>
                             }
@@ -105,15 +133,30 @@ export default function ImportVideoPage() {
 
                             <div className="flex flex-col items-center border   h-full rounded-lg  p-4">
 
-                                <h2 className="text-lg font-semibold mb-4">Thông số cấu hình</h2>
-                                <div className="grid grid-cols-1 gap-4 flex-1">
-                                    <div>
-                                        <label className="block mb-1 ">Kích thước:</label>
-                                        <input type="number" className="border p-2 w-full text-black" value={size} onChange={(e: any) => setSize(e.target.value)} />
+                                <h2 className="font-semibold mb-4 text-3xl">Thông số cấu hình</h2>
+                                <h2 className="text-2xl font-semibold mb-4 w-full">Thời lượng</h2>
+                                
+                                <div className="w-full flex-1 flex justify-start gap-4">
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <label className="block uppercase tracking-wide text-gray-200 text-lg font-bold mb-2" htmlFor="mm">
+                                            Phút
+                                        </label>
+                                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white text-lg" id="mm" type="number" placeholder="Số phút" min="0" max="59"/>
+                                    </div>
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <label className="block uppercase tracking-wide text-gray-200 text-lg font-bold mb-2" htmlFor="ss">
+                                            Giây
+                                        </label>
+                                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white text-lg" id="ss" type="number" placeholder="Số giây" min="0" max="59"/>
                                     </div>
 
                                 </div>
-                                {isUploaded ? <button className="bg-green-500 max-w-[100px] text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                {isUploaded ? <button
+                                    onClick={() => {
+                                        console.log("cut video")
+                                        // processVideos(videos)
+                                    }}
+                                    className="bg-green-500 max-w-[100px] text-white px-4 py-2 rounded-lg hover:bg-green-600">
                                     Process
                                 </button> : ""}
                             </div>

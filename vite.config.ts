@@ -10,4 +10,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  optimizeDeps: {
+    exclude: ['@ffmpeg/ffmpeg'], // Thay thế bằng tên thư viện gây lỗi
+},
 });
