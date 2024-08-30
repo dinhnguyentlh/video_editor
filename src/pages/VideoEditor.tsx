@@ -96,7 +96,7 @@ function VideoEditor() {
         trackItemsMap,
         transitionIds,
         transitionsMap,
-    } = useEditorState();
+    }:any = useEditorState();
 
     useEffect(() => {
         setCompactFonts(getCompactFontData(FONTS));

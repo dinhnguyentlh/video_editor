@@ -1,0 +1,69 @@
+
+/* Custom checkbox styling */
+.form-checkbox {
+    width: 16px; /* Kích thước của checkbox */
+    height: 16px; /* Kích thước của checkbox */
+    background-color: black; /* Màu nền khi không được chọn */
+    border: 2px solid gray !important; /* Màu viền là xám */
+    border-radius: 0; /* Đảm bảo checkbox có dạng hình vuông */
+    appearance: none; /* Xóa bỏ kiểu mặc định của checkbox */
+    cursor: pointer; /* Con trỏ chuột dạng pointer khi hover */
+    display: inline-block;
+    vertical-align: middle;
+    position: relative; /* Để chứa dấu tích */
+}
+
+.form-checkbox:checked {
+    background-color: gray !important; /* Màu nền khi được chọn */
+    /* border-color: gray; Màu viền khi được chọn */
+}
+
+.form-checkbox:checked::after {
+    content: '✔'; /* Dấu tích */
+    color: rgb(36, 57, 173) !important; /* Màu của dấu tích */
+    font-size: 14px; /* Kích thước của dấu tích */
+    position: absolute; /* Định vị dấu tích */
+    top: 50%; /* Căn giữa theo chiều dọc */
+    left: 50%; /* Căn giữa theo chiều ngang */
+    transform: translate(-50%, -50%); /* Căn giữa dấu tích */
+}
+
+.form-checkbox:focus {
+    outline: none; /* Xóa bỏ viền khi focus */
+    /* box-shadow: 0 0 0 3px gray; Tạo shadow khi focus */
+}
+/* Dialog Content Styling */
+.dialog-content {
+    width: 80vw;
+    height: 80vh;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Video container styling */
+.video-container {
+    width: 60vw;
+    height: 60vh;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    overflow: hidden !important; 
+}
+
+/* Portrait video styling */
+.portrait-video {
+    max-width: 60%; /* Scale down for portrait */
+    max-height: calc(100% - 100px); 
+    object-fit: contain;
+}
+
+/* Landscape video styling */
+.landscape-video {
+    width: 100%; /* Full width for landscape */
+    height: auto;
+    max-height: calc(100% - 100px);
+    object-fit: contain;
+}

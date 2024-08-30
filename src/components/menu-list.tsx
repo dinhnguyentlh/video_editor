@@ -26,7 +26,7 @@ export default function MenuList() {
         variant={'ghost'}
         size={'icon'}
       >
-        <Icons.search width={20} />
+        <Icons.upload width={20} />
       </Button>
       <Button
         onClick={() => {

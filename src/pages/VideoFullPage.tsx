@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import { Icons } from "@/components/shared/icons";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -8,8 +9,9 @@ export default function () {
         document.title = "VIDEO Nực cười xem lại tình huống Zirkzee phá hỏng bàn thắng của Garnacho";
     }, []);
     return (
-        <div className="h-screen p-8 relative flex flex-col">
-            <nav className="flex" aria-label="Breadcrumb">
+        <div className="h-screen p-8 relative flex flex-col pt-0">
+            <Navbar/>
+            {/* <nav className="flex" aria-label="Breadcrumb">
                 <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li className="inline-flex items-center">
                         <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -36,7 +38,7 @@ export default function () {
                         </div>
                     </li>
                 </ol>
-            </nav>
+            </nav> */}
             {/* <h1 className="absolute top-2 left-1/2 flex items-center justify-center  font-bold text-gray-50 mb-4 font-mono" >
                 <div className="bg-gray-800  text-white px-4 py-2 rounded-lg flex gap-4 items-center">
                     video preview

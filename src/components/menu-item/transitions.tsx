@@ -21,7 +21,7 @@ const TransitionsMenuItem = ({
 }: {
   transition: Partial<ITransition>;
 }) => {
-  const { timelineManager } = useEditorState();
+  const { timelineManager}:any = useEditorState();
   const divRef = React.useRef<HTMLDivElement>(null);
 
   const handleDragStart = React.useCallback(

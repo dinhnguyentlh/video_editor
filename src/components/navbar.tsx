@@ -16,56 +16,21 @@ export default function Navbar() {
     >
       <div className="flex items-center">
         <div className="px-2.5  flex items-center rounded-md">
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 28 28"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="14"
-              cy="14"
-              r="10.5"
-              stroke="url(#paint0_linear_3408_7358)"
-              strokeWidth="7"
-            />
-            <defs>
-              <linearGradient
-                id="paint0_linear_3408_7358"
-                x1="2.8"
-                y1="2.1"
-                x2="23.8"
-                y2="25.2"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#47D83B" />
-                <stop offset="1" stopColor="#3CA22F" />
-              </linearGradient>
-            </defs>
-          </svg>
+        <div className="flex items-center space-x-4">
+                <img
+                    src="https://img-zlr2.tv360.vn/tv360-static/static/web/images/logo_new.svg"
+                    alt="Logo"
+                    className="h-8"
+                />
+             
+            </div>
         </div>
 
-        <div className="h-12 px-1.5  gap-2 flex items-center rounded-md">
-          <Button
-            className="text-muted-foreground bg-grey-900 w-8 h-8"
-            size={'icon'}
-            variant={'ghost'}
-          >
-            <Icons.undo height={20} />
-          </Button>
-          <Button
-            className="text-grey-500 bg-grey-900 w-8 h-8"
-            size={'icon'}
-            variant={'ghost'}
-          >
-            <Icons.redo height={20} />
-          </Button>
-        </div>
+        
       </div>
       <div className="px-4 gap-4  flex items-center justify-center rounded-md">
         <div className="text-gray-200 font-semibold text-sm">
-          Untitled but with some content
+  
         </div>
       </div>
 

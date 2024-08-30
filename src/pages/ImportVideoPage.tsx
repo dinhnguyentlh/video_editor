@@ -1,10 +1,13 @@
+import Navbar from "@/components/navbar";
 import { Icons } from "@/components/shared/icons";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 // import processVideos from "@/utils/processVideos";
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function ImportVideoPage() {
+    const navigate = useNavigate();
     const [videos, setVideos] = useState([]);
     const [isUploaded, setIsUploaded] = useState(false);
     const [size, setSize] = useState<number>(10)
@@ -24,8 +27,9 @@ export default function ImportVideoPage() {
     console.log({ videos })
     // processVideos([{path:}])
     return (
-        <div className="h-screen p-8 relative ">
-            <nav className="flex" aria-label="Breadcrumb">
+        <div className="h-screen p-8 relative flex flex-col pt-0">
+            <Navbar />
+            {/* <nav className="flex" aria-label="Breadcrumb">
                 <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li className="inline-flex items-center">
                         <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -45,7 +49,7 @@ export default function ImportVideoPage() {
                     </li>
 
                 </ol>
-            </nav>
+            </nav> */}
             {/* <h1 className="absolute top-2 left-1/2 flex items-center justify-center  font-bold text-gray-50 mb-4 font-mono" ><Button size="sm" variant="secondary">
                         import video
                     </Button></h1> */}
@@ -122,7 +126,7 @@ export default function ImportVideoPage() {
                                         id="file-upload"
                                     />
                                     <label htmlFor="file-upload" className="text-white px-4 py-2 rounded-lg cursor-pointer">
-                                        <Icons.CloudDownloadIcon width={200} color="gray" />
+                                        <Icons.CloudUploadIcon width={200} color="gray" />
                                     </label>
                                 </div>
                             }
@@ -134,30 +138,57 @@ export default function ImportVideoPage() {
                             <div className="flex flex-col items-center border   h-full rounded-lg  p-4">
 
                                 <h2 className="font-semibold mb-4 text-3xl">Thông số cấu hình</h2>
-                                <h2 className="text-2xl font-semibold mb-4 w-full">Thời lượng</h2>
-                                
-                                <div className="w-full flex-1 flex justify-start gap-4">
-                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <label className="block uppercase tracking-wide text-gray-200 text-lg font-bold mb-2" htmlFor="mm">
-                                            Phút
-                                        </label>
-                                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white text-lg" id="mm" type="number" placeholder="Số phút" min="0" max="59"/>
+                                <div className="flex flex-col items-center  w-full   h-full rounded-lg  p-4">
+                                    <h2 className="text-2xl font-semibold mb-4 w-full">Thời lượng</h2>
+
+                                    <div className="w-full  flex justify-start gap-4 mb-3">
+                                        <div className="w-full md:w-1/2  mb-6 md:mb-0">
+                                            <label className="block uppercase tracking-wide text-gray-200 text-lg font-bold mb-2" htmlFor="mm">
+                                                Phút
+                                            </label>
+                                            <input className=" bg-gray-700 appearance-none block w-full  text-white border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none  text-lg" id="mm" type="number" placeholder="Số phút" min="0" max="59" />
+                                        </div>
+                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                            <label className="block uppercase tracking-wide text-gray-200 text-lg font-bold mb-2" htmlFor="ss">
+                                                Giây
+                                            </label>
+                                            <input className=" bg-gray-700 appearance-none block w-full  text-white border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none  text-lg" id="ss" type="number" placeholder="Số giây" min="0" max="59" />
+                                        </div>
+
                                     </div>
-                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <label className="block uppercase tracking-wide text-gray-200 text-lg font-bold mb-2" htmlFor="ss">
-                                            Giây
-                                        </label>
-                                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white text-lg" id="ss" type="number" placeholder="Số giây" min="0" max="59"/>
+                                    <h2 className="text-2xl font-semibold mb-4 w-full">Tiêu đề</h2>
+
+                                    <div className="w-full  flex justify-start gap-4 mb-3">
+
+                                        <input className=" bg-gray-700 appearance-none block w-full  text-white border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none  text-lg" id="ss" type="text" placeholder="Tiêu đề video..." min="0" max="59" />
+
                                     </div>
+                                    <h2 className="text-2xl font-semibold mb-4 w-full ">Mô tả</h2>
+
+                                    <div className="w-full flex-1 flex justify-start gap-4 mb-3">
+
+                                        <textarea className="bg-gray-700 appearance-none block w-full  text-white border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none  text-lg" id="ss" placeholder="Mô tả video..." />
+
+                                    </div>
+                                    <h2 className="text-2xl font-semibold mb-4 w-full">Kích thước</h2>
+                                    <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        {/* <option selected>Choose a country</option> */}
+                                        <option selected value="US">16:9</option>
+                                        <option value="CA">1:1</option>
+                                        <option value="FR">9:16</option>
+                                        <option value="DE">4:3</option>
+                                    </select>
 
                                 </div>
+
                                 {isUploaded ? <button
                                     onClick={() => {
                                         console.log("cut video")
+                                        navigate('/video-full');
                                         // processVideos(videos)
                                     }}
-                                    className="bg-green-500 max-w-[100px] text-white px-4 py-2 rounded-lg hover:bg-green-600">
-                                    Process
+                                    className="bg-green-500 max-w-[200px] text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                    Tạo short video
                                 </button> : ""}
                             </div>
                         </div>

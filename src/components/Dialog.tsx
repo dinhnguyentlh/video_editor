@@ -31,7 +31,7 @@ export default function Dialog() {
                         </div>
                         <div className="flex items-center ">
                             <div className="w-4 h-4 bg-gray-400 rounded-full mr-2"></div>
-                            <span className="text-gray-400">Cấu hình</span>
+                            <span className="text-gray-400">Cắt video</span>
                         </div>
                         <div className="flex items-center">
                             <div className="w-4 h-4 bg-gray-400 rounded-full mr-2"></div>
